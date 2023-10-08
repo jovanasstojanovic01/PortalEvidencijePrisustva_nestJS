@@ -1,0 +1,520 @@
+<div class="adminPageContainer">
+    <div class="navbarContainer">
+        <img src="../../../assets/logo.png" class="logoImage" alt="PEP">
+        <!-- <img src="../../../assets/name.png" class="nameImage" alt="PEP"> -->
+        <button class="backButton" (click)="profesorRoute()">
+            Back
+        </button>
+    </div>
+    <div class="adminDataContainer">
+        <div class="profesorContainer">
+            <div class="createProfesorForma">
+                <div class="profesorInputLine">
+                    <label class="createProfesorLabel" for="email">Email:</label>
+                    <input class="createProfesorInput" type="email" id="email" [(ngModel)]="noviProfesor.email" name="email" required>
+                </div>
+                <div class="profesorInputLine">
+                    <label class="createProfesorLabel" for="ime">Ime:</label>
+                    <input class="createProfesorInput" type="text" id="ime" [(ngModel)]="noviProfesor.ime" name="ime" required>
+                </div>
+                <div class="profesorInputLine">
+                    <label class="createProfesorLabel" for="password">Password:</label>
+                    <input class="createProfesorInput" type="text" id="password" [(ngModel)]="noviProfesor.password" name="password" required>
+                </div>
+                <div class="profesorInputLine">
+                    <label class="createProfesorLabel" for="prezime">Prezime:</label>
+                    <input class="createProfesorInput" type="text" id="prezime" [(ngModel)]="noviProfesor.prezime" name="prezime" required>
+                </div>
+                <button class="createProfesorButton" type="submit" (click)="kreirajNovogProfesora()">Kreiraj profesora</button>
+            </div>
+            <div class="listProfesorContainer">
+                <table class="profesorTable">
+                    <thead>
+                        <tr>
+                            <th class="profesorTableHead">IME</th>
+                            <th class="profesorTableHead">PREZIME</th>
+                            <th class="profesorTableHead">PREDMETI</th>
+                            <th class="profesorTableHead"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let el of tabelaData2.data">
+                            <td class="profesorTableData">{{ el.ime }}</td>
+                            <td class="profesorTableData">{{ el.prezime }}</td>
+                            <td class="profesorTableData">
+                                <form class="subjectProfesorListForm" [formGroup]="opcijeForm" (ngSubmit)="onSubmit()">
+                                    <div class="selectDiv" (mouseenter)="getPredmete(el.id)">
+                                        <select class="selectEl" (click)="getPredmete(el.id)" formControlName="opcija">
+                                            <option class="optionEl" *ngFor="let opcija of opcije" [value]="opcija.id"
+                                                [disabled]="opcija.id !== '+'">{{ opcija.naziv }}</option>
+                                        </select>
+                                    </div>
+                                    <button class="plusButton" (click)="toggleInput()">+</button>
+                                </form>
+                                <div *ngIf="showInput">
+                                    <input class="newSubjectInput" type="text" placeholder="Unesite vrednost" [(ngModel)]="noviPredmet">
+                                    <button class="tickButton" (click)="closeInput(el.id)">✓</button>
+                                </div>
+                            </td>
+                            <td class="profesorTableData">
+                                <button *ngIf="el.id!=2" class="deleteButton" (click)="deleteProfesora(el.id)">
+                                    Obriši
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="studentContainer">
+            <div class="listStudentContainer">
+                <table class="studentTable">
+                    <thead>
+                        <tr>
+                            <th class="studentTableHead">Indeks</th>
+                            <th class="studentTableHead">Ime</th>
+                            <th class="studentTableHead">Prezime</th>
+                            <th class="studentTableHead"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let element of tabelaData.data">
+                            <td  class="studentTableData">{{ element.indeks }}</td>
+                            <td  class="studentTableData">{{ element.ime }}</td>
+                            <td  class="studentTableData">{{ element.prezime }}</td>
+                            <td  class="studentTableData">
+                                <button class="deleteButton" (click)="deleteStudent(element.id)">
+                                    Obriši
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="createStudentForma">
+                <div class="studentInputLine">
+                    <label class="createStudentLabel" for="email">Email:</label>
+                    <input class="createStudentInput" type="email" id="email" [(ngModel)]="noviStudent.email" name="email" required>
+                </div>
+                <div class="studentInputLine">
+                    <label class="createStudentLabel" for="ime">Ime:</label>
+                    <input class="createStudentInput" type="text" id="ime" [(ngModel)]="noviStudent.ime" name="ime" required>
+                </div>
+                <div class="studentInputLine">
+                    <label class="createStudentLabel" for="password">Password:</label>
+                    <input class="createStudentInput" type="text" id="password" [(ngModel)]="noviStudent.password" name="password"
+                        required>
+                </div>
+                <div class="studentInputLine">
+                    <label class="createStudentLabel" for="prezime">Prezime:</label>
+                    <input class="createStudentInput" type="text" id="prezime" [(ngModel)]="noviStudent.prezime" name="prezime"
+                        required>
+                </div>
+                <div class="studentInputLine">
+                    <label class="createStudentLabel" for="prezime">Indeks:</label>
+                    <input class="createStudentInput" type="text" id="prezime" [(ngModel)]="noviStudent.indeks" name="prezime"
+                        required>
+                </div>
+                <button class="createStudentButton" type="submit" (click)="kreirajNovogStudenta()">Kreiraj studenta</button>
+            </div>
+        </div>
+
+        <div class="predmetiContainer">
+            <div class="listPredmetContainer">
+                <table class="predmetiTable">
+                    <thead>
+                        <tr>
+                            <th class="predmetTableHead">NAZIV</th>
+                            <th class="predmetTableHead"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let el of tabelaData3.data">
+                            <td class="predmetTableData">
+                                <button class="predmetButton" (click)="openForm(el.id)">
+                                    {{ el.naziv }}
+                                </button>
+                            </td>
+                            <td class="predmetTableData">
+                                <button  class="deleteButton" (click)="deletePredmet(el.id)">
+                                    Obriši
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="createPrisustvoContainer">
+                <div class="createPrisustvoSelectContainer" *ngIf="selectedPredmetId >= 0">
+                    <div class="creatingContainer">
+                        <label  class="createPrisustvoLabel"  for="indeks">Indeks:</label>
+                        <input class="createPrisustvoInput" type="number" id="indeks" [(ngModel)]="studentIndex" name="indeks" required>
+                        <button class="prisustvoCreateButton" type="submit" (click)="dodajPrisustvo()">Dodaj studenta na predmet</button>
+                    </div>
+                    <div>
+                        <div class="deleteStudentFromSubjectTableContainer">
+                            <table class="deleteStudentFromSubjectTable">
+                                <thead>
+                                    <tr>
+                                        <th class="prisustvoTableHead">Indeks</th>
+                                        <th class="prisustvoTableHead"></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let element of tabelaData4.data">
+                                        <td  class="prisustvoTableData">{{ element.prisustvovao.indeks }}</td>
+                                        <td  class="prisustvoTableData">
+                                            <button class="deleteButton" (click)="deletePrisustvoByStudentId(element.id)">
+                                                Obriši
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+<!-- <button class="mat-button" (click)="profesorRoute()">Back</button>
+<div class="tab-container">
+    <ul class="tab-header">
+        <li class="tab-header-item" style="color: black;">
+            <a href="#studenti" (click)="function()">Studenti</a>
+        </li>
+        <li class="tab-header-item">
+            <a href="#profesori" (click)="function2()">Profesori</a>
+        </li>
+        <li class="tab-header-item">
+            <a href="#predmeti" (click)="function3()">Predmeti</a>
+        </li>
+    </ul>
+
+    <div id="studenti" class="tab-content">
+        <div class="kreiranjeStudenta">
+            <label for="email">Email:</label>
+            <input type="email" id="email" [(ngModel)]="noviStudent.email" name="email" required>
+            <label for="ime">Ime:</label>
+            <input type="text" id="ime" [(ngModel)]="noviStudent.ime" name="ime" required>
+            <label for="password">Password:</label>
+            <input type="text" id="password" [(ngModel)]="noviStudent.password" name="password" required>
+            <label for="prezime">Prezime:</label>
+            <input type="text" id="prezime" [(ngModel)]="noviStudent.prezime" name="prezime" required>
+            <label for="indeks">Indeks:</label>
+            <input type="number" id="indeks" [(ngModel)]="noviStudent.indeks" name="indeks" required>
+            <button type="submit" (click)="kreirajNovogStudenta()">Kreiraj studenta</button>
+        </div>
+        <div class="brisanjeStudenataTabela">
+            <table class="mat-table">
+                <thead>
+                    <tr>
+                        <th>Indeks</th>
+                        <th>Ime</th>
+                        <th>Prezime</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let element of tabelaData.data">
+                        <td>{{ element.indeks }}</td>
+                        <td>{{ element.ime }}</td>
+                        <td>{{ element.prezime }}</td>
+                        <td>
+                            <button class="mat-button primary-button" (click)="deleteStudent(element.id)">
+                                <mat-icon>delete</mat-icon>
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div id="profesori" class="tab-content">
+        <div class="kreiranjeProfesora">
+            <label for="email">Email:</label>
+            <input type="email" id="email" [(ngModel)]="noviProfesor.email" name="email" required>
+            <label for="ime">Ime:</label>
+            <input type="text" id="ime" [(ngModel)]="noviProfesor.ime" name="ime" required>
+            <label for="password">Password:</label>
+            <input type="text" id="password" [(ngModel)]="noviProfesor.password" name="password" required>
+            <label for="prezime">Prezime:</label>
+            <input type="text" id="prezime" [(ngModel)]="noviProfesor.prezime" name="prezime" required>
+            <button type="submit" (click)="kreirajNovogProfesora()">Kreiraj profesora</button>
+        </div>
+        <div class="brisanjeProfesoraTabela">
+            <table class="mat-table">
+                <thead>
+                    <tr>
+                        <th>Ime</th>
+                        <th>Prezime</th>
+                        <th>Predmeti</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let el of tabelaData2.data">
+                        <td>{{ el.ime }}</td>
+                        <td>{{ el.prezime }}</td>
+                        <td>
+                            <form [formGroup]="opcijeForm" (ngSubmit)="onSubmit()">
+                                <mat-form-field (mouseenter)="getPredmete(el.id)">
+                                    <mat-select formControlName="opcija">
+                                        <mat-option *ngFor="let opcija of opcije" [value]="opcija.id"
+                                            [disabled]="opcija.id !== '+'">{{ opcija.naziv }}</mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                                <button mat-icon-button (click)="toggleInput()">+</button>
+                            </form>
+                            <div *ngIf="showInput">
+                                <input type="text" placeholder="Unesite vrednost" [(ngModel)]="noviPredmet">
+                                <button *ngIf="el.id!=2" mat-icon-button (click)="closeInput(el.id)">✓</button>
+                            </div>
+                        </td>
+                        <td>
+                            <button class="mat-button primary-button" (click)="deleteProfesora(el.id)">
+                                <mat-icon>delete</mat-icon>
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div id="predmeti" class="tab-content">
+        <div class="upravljanjePredmetimaDiv">
+            <div class="listaPredmeta">
+                <table class="mat-table">
+                    <thead>
+                        <tr>
+                            <th>Naziv</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let el of tabelaData3.data">
+                            <td>
+                                <button class="mat-button primary-button" (click)="openForm(el.id)">
+                                    {{ el.naziv }}
+                                </button>
+                            </td>
+                            <td>
+                                <button class="mat-button primary-button" (click)="deletePredmet(el.id)">
+                                    <mat-icon>delete</mat-icon>
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="kreiranjePrisustva">
+                <div class="manjiKontejner" *ngIf="selectedPredmetId >= 0">
+                    <label for="indeks">Indeks:</label>
+                    <input type="number" id="indeks" [(ngModel)]="studentIndex" name="indeks" required>
+                    <button type="submit" (click)="dodajPrisustvo()">Dodaj studenta na predmet</button>
+                    <div class="formaZaDodavanjeStudenataNaPredmet">
+                        <table class="mat-table">
+                            <thead>
+                                <tr>
+                                    <th>Indeks</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let element of tabelaData4.data">
+                                    <td>{{ element.prisustvovao.indeks }}</td>
+                                    <td>
+                                        <button class="mat-button primary-button"
+                                            (click)="deletePrisustvoByStudentId(element.id)">
+                                            <mat-icon>delete</mat-icon>
+                                        </button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+ -->
+
+
+<!-- 
+
+<button mat-raised-button (click)="profesorRoute()">Back</button>
+<div class="tab-container">
+    <mat-tab-group>
+        <mat-tab style="color:black" label="Studenti" (click)="function()">
+            <div class="kreiranjeStudenta">
+                <label for="email">Email:</label>
+                <input type="email" id="email" [(ngModel)]="noviStudent.email" name="email" required>
+                <label for="ime">Ime:</label>
+                <input type="text" id="ime" [(ngModel)]="noviStudent.ime" name="ime" required>
+                <label for="password">Password:</label>
+                <input type="text" id="password" [(ngModel)]="noviStudent.password" name="password" required>
+                <label for="prezime">Prezime:</label>
+                <input type="text" id="prezime" [(ngModel)]="noviStudent.prezime" name="prezime" required>
+                <label for="indeks">Indeks:</label>
+                <input type="number" id="indeks" [(ngModel)]="noviStudent.indeks" name="indeks" required>
+                <button type="submit" (click)="kreirajNovogStudenta()">Kreiraj studenta</button>
+            </div>
+            <div class="brisanjeStudenataTabela">
+                <table mat-table [dataSource]="tabelaData" class="mat-elevation-z8">
+
+                    <ng-container matColumnDef="indeks">
+                        <th mat-header-cell *matHeaderCellDef> Indeks </th>
+                        <td mat-cell *matCellDef="let element"> {{element.indeks}} </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="ime">
+                        <th mat-header-cell *matHeaderCellDef> Ime </th>
+                        <td mat-cell *matCellDef="let element"> {{element.ime}} </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="prezime">
+                        <th mat-header-cell *matHeaderCellDef> Prezime </th>
+                        <td mat-cell *matCellDef="let element"> {{element.prezime}} </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef=" ">
+                        <th mat-header-cell *matHeaderCellDef> </th>
+                        <td mat-cell *matCellDef="let element">
+                            <button mat-button color="primary"
+                                (click)="deleteStudent(element.id)"><mat-icon>delete</mat-icon></button>
+                        </td>
+                    </ng-container>
+
+                    <tr mat-header-row *matHeaderRowDef="kolone"></tr>
+                    <tr mat-row *matRowDef="let row; columns: kolone;"></tr>
+                </table>
+            </div>
+        </mat-tab>
+        <mat-tab label="Profesori" (click)="function2()">
+            <div class="kreiranjeProfesora">
+                <label for="email">Email:</label>
+                <input type="email" id="email" [(ngModel)]="noviProfesor.email" name="email" required>
+                <label for="ime">Ime:</label>
+                <input type="text" id="ime" [(ngModel)]="noviProfesor.ime" name="ime" required>
+                <label for="password">Password:</label>
+                <input type="text" id="password" [(ngModel)]="noviProfesor.password" name="password" required>
+                <label for="prezime">Prezime:</label>
+                <input type="text" id="prezime" [(ngModel)]="noviProfesor.prezime" name="prezime" required>
+                <button type="submit" (click)="kreirajNovogProfesora()">Kreiraj profesora</button>
+            </div>
+            <div class="brisanjeProfesoraTabela">
+                <table mat-table [dataSource]="tabelaData2" class="mat-elevation-z8">
+
+                    <ng-container matColumnDef="ime">
+                        <th mat-header-cell *matHeaderCellDef> Ime </th>
+                        <td mat-cell *matCellDef="let el"> {{el.ime}} </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="prezime">
+                        <th mat-header-cell *matHeaderCellDef> Prezime </th>
+                        <td mat-cell *matCellDef="let el"> {{el.prezime}} </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="predmeti">
+                        <th mat-header-cell *matHeaderCellDef> Predmeti </th>
+                        <td mat-cell *matCellDef="let el">
+                            <form [formGroup]="opcijeForm" (ngSubmit)="onSubmit()">
+                                <mat-form-field (mouseenter)="getPredmete(el.id)">
+                                    <mat-select formControlName="opcija">
+                                        <mat-option *ngFor="let opcija of opcije" [value]="opcija.id"
+                                            [disabled]="opcija.id !== '+'">{{ opcija.naziv }}</mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                                <button mat-icon-button (click)="toggleInput()">+</button>
+                            </form>
+                            <div *ngIf="showInput">
+                                <input matInput placeholder="Unesite vrednost" [(ngModel)]="noviPredmet">
+                                <button mat-icon-button (click)="closeInput(el.id)">✓</button>
+                            </div>
+
+                        </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef=" ">
+                        <th mat-header-cell *matHeaderCellDef> </th>
+                        <td mat-cell *matCellDef="let el">
+                            <button mat-button color="primary"
+                                (click)="deleteProfesora(el.id)"><mat-icon>delete</mat-icon></button>
+                        </td>
+                    </ng-container>
+
+                    <tr mat-header-row *matHeaderRowDef="kolone2"></tr>
+                    <tr mat-row *matRowDef="let row; columns: kolone2;"></tr>
+                </table>
+            </div>
+        </mat-tab>
+        <mat-tab label="Predmeti" (click)="function3()">
+            <div class="upravljanjePredmetimaDiv">
+                <div class="listaPredmeta">
+                    <table mat-table [dataSource]="tabelaData3" class="mat-elevation-z8">
+
+                        <ng-container matColumnDef="naziv">
+                            <th mat-header-cell *matHeaderCellDef> Naziv </th>
+                            <td mat-cell *matCellDef="let el">
+                                <button mat-button color="primary" (click)="openForm(el.id)">{{el.naziv}}</button>
+                            </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef=" ">
+                            <th mat-header-cell *matHeaderCellDef> </th>
+                            <td mat-cell *matCellDef="let el">
+                                <button mat-button color="primary"
+                                    (click)="deletePredmet(el.id)"><mat-icon>delete</mat-icon></button>
+                            </td>
+                        </ng-container>
+
+                        <tr mat-header-row *matHeaderRowDef="kolone3"></tr>
+                        <tr mat-row *matRowDef="let row; columns: kolone3;"></tr>
+                    </table>
+                </div>
+                <div class="kreiranjePrisustva">
+                    <div class="manjiKontejner" *ngIf="selectedPredmetId >=0">
+                        <label for="indeks">Indeks:</label>
+                        <input type="number" id="indeks" [(ngModel)]="studentIndex" name="indeks" required>
+                        <button type="submit" (click)="dodajPrisustvo()">Dodaj studenta na predmet</button>
+                        <div class="formaZaDodavanjeStudenataNaPredmet">
+                            <table mat-table [dataSource]="tabelaData4" class="mat-elevation-z8">
+
+                                <ng-container matColumnDef="indeks">
+                                    <th mat-header-cell *matHeaderCellDef> Indeks </th>
+                                    <td mat-cell *matCellDef="let element"> {{element.prisustvovao.indeks}} </td>
+                                </ng-container>
+
+
+                                <ng-container matColumnDef=" ">
+                                    <th mat-header-cell *matHeaderCellDef> </th>
+                                    <td mat-cell *matCellDef="let element">
+                                        <button mat-button color="primary"
+                                            (click)="deletePrisustvoByStudentId(element.id)"><mat-icon>delete</mat-icon></button>
+                                    </td>
+                                </ng-container>
+
+                                <tr mat-header-row *matHeaderRowDef="kolone4"></tr>
+                                <tr mat-row *matRowDef="let row; columns: kolone4;"></tr>
+                            </table>
+                        </div>
+                        <div class="listaStudenata na predmetu">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </mat-tab>
+    </mat-tab-group>
+
+</div> -->

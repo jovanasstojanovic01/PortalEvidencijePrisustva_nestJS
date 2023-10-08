@@ -1,0 +1,249 @@
+<div class="profesorPageContainer">
+    <div class="navbarContainer">
+        <img src="../../../assets/logo.png" class="logoImage" alt="PEP">
+        <!-- <img src="../../../assets/name.png" class="nameImage" alt="PEP"> -->
+        <button class="logOutButton" (click)="logout()">
+            Log Out
+        </button>
+        <button class="logOutButton" *ngIf="isProfesorAdmin" (click)="adminRoute()">
+            Admin Panel
+        </button>
+    </div>
+    <div class="profesorProfileContainer">
+        <div class="profesorInfoContainer">
+            <div class="infoContainer">
+                <img src="../../../assets/profesorInfoImage.png" class="profesorInfoImage" alt="">
+                <br>
+                <div class="infoDataContainer">
+        
+                    <label class="profesorInfoLabel">
+                        Ime: <span class="profesorInfo">{{currentUser?.ime}}</span>
+                    </label>
+                    <label class="profesorInfoLabel">
+                        Prezime: <span class="profesorInfo">{{currentUser?.prezime}}</span>
+                    </label>
+                    <label class="profesorInfoLabel">
+                        E-Mail: <span class="profesorInfo">{{currentUser?.email}}</span>
+                    </label>
+                </div>
+            </div>
+            <div class="subjectAndClassContainer">
+                <div class="selectSubjectContainer">
+                    <label for="opcija">Izaberite opciju</label>
+                    <select id="opcija" [(ngModel)]="selectedOption" (change)="function()">
+                        <option class="option" *ngFor="let option of optionsFromDatabase" [value]="option.id">
+                            {{ option.naziv }}
+                        </option>
+                    </select>
+                </div>
+                <form class="classContainer" (ngSubmit)="kreirajCas()">
+                    <label class="classLabel" for="sifraCasa">Šifra časa</label>
+                    <input type="text" [(ngModel)]="sifraCasa" name="sifraCasa" id="sifraCasa" placeholder="Šifra časa">
+                    <label class="classLabel" for="trajanje">Trajanje časa</label>
+                    <input type="number" [(ngModel)]="trajanje" name="trajanje" id="trajanje" placeholder="Trajanje časa">
+                    <button class="formButton" type="submit">Zakaži čas</button>
+                </form>
+            </div>
+        </div>
+        <div class="statiscticInfoContainer">
+            <div class="decorativeStudentInfoContainer">
+                    <table class="studentInfoTable">
+                        <thead>
+                            <tr>
+                                <th class="studentTableHead">INDEKS</th>
+                                <th class="studentTableHead">IME</th>
+                                <th class="studentTableHead">PREZIME</th>
+                                <th class="studentTableHead">PRISUSTVOVAO/LA NA</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let element of tabelaData.data">
+                                <td class="studentTableData">{{ element.prisustvovao.indeks }}</td>
+                                <td class="studentTableData">{{ element.prisustvovao.ime }}</td>
+                                <td class="studentTableData">{{ element.prisustvovao.prezime }}</td>
+                                <td class="studentTableData">{{ element.broj_odslusanih_casova }}%</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                
+            </div>
+            <div class="graphContainer">
+                <div id="statistika" class="chart">
+                    <app-chart *ngIf="tmp > 0" [idPredmeta]="tmp" [brojStudenata]="brojStudenataPoPredmetu"></app-chart>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- <div class="profesorProfileContainer">
+    <div class="pick-container">
+        <div class="card-container">
+            <div class="user-card">
+                <div class="user-avatar">
+                    <i class="material-icons">school</i>
+                    <h2>Profesor</h2>
+                </div>
+                <div class="user-info">
+                    <p>{{ currentUser?.ime }} {{ currentUser?.prezime }}</p>
+                </div>
+                <div class="user-actions">
+                    <button class="mat-button primary-button" (click)="logout()">
+                        <i class="material-icons">exit_to_app</i>
+                    </button>
+               </div>
+            </div>
+        </div>
+
+         <div class="select-container">
+            <label for="opcija">Izaberite opciju</label>
+            <select id="opcija" [(ngModel)]="selectedOption" (change)="function()">
+                <option *ngFor="let option of optionsFromDatabase" [value]="option.naziv">
+                    {{ option.naziv }}
+                </option>
+            </select>
+        </div>
+    </div> 
+
+    <div class="tab-container">
+        <ul class="tab-header">
+            <li class="tab-header-item" style="color: black;">
+                <a href="#zakazivanje">Zakazivanje</a>
+            </li>
+            <li class="tab-header-item">
+                <a href="#prisustvo">Prisustvo</a>
+            </li>
+            <li class="tab-header-item">
+                <a href="#statistika">Statistika</a>
+            </li>
+        </ul>
+
+        <div id="zakazivanje" class="tab-content">
+            <form class="zakazivanje-form" (submit)="kreirajCas()">
+                <label for="sifraCasa">Šifra časa</label>
+                <input type="text" [(ngModel)]="sifraCasa" name="sifraCasa" id="sifraCasa" placeholder="Šifra časa">
+                <label for="trajanje">Trajanje časa</label>
+                <input type="number" [(ngModel)]="trajanje" name="trajanje" id="trajanje" placeholder="Trajanje časa">
+                <button class="mat-button primary-button" type="submit">Zakaži čas</button>
+            </form>
+        </div>
+
+        <div id="prisustvo" class="tab-content">
+            <table class="mat-table">
+                <thead>
+                    <tr>
+                        <th>Indeks</th>
+                        <th>Ime</th>
+                        <th>Prezime</th>
+                        <th>Prisustvovao/la na</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let element of tabelaData.data">
+                        <td>{{ element.prisustvovao.indeks }}</td>
+                        <td>{{ element.prisustvovao.ime }}</td>
+                        <td>{{ element.prisustvovao.prezime }}</td>
+                        <td>{{ element.broj_odslusanih_casova }}%</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div id="statistika" class="tab-content">
+            <app-chart *ngIf="tmp > 0" [idPredmeta]="tmp" [brojStudenata]="brojStudenataPoPredmetu"></app-chart>
+        </div>
+    </div>
+</div>
+
+ -->
+
+
+<!-- 
+<div class="container">
+    <div class="pick-container">
+        <div class="card-container">
+            <mat-card class="user-card">
+                <mat-card-header>
+                    <div mat-card-avatar class="user-avatar">
+                        <mat-icon>school</mat-icon>
+                        <mat-card-title>Profesor</mat-card-title>
+                    </div>
+
+                </mat-card-header>
+                <mat-card-content>
+                    <p>{{ currentUser?.ime }} {{ currentUser?.prezime }}</p>
+                </mat-card-content>
+                <mat-card-actions>
+                    <button mat-button color="primary" (click)="logout()"><mat-icon>exit_to_app</mat-icon></button>
+                </mat-card-actions>
+                <button mat-button *ngIf="isProfesorAdmin" (click)="adminRoute()">Admin Panel</button>
+            </mat-card>
+
+        </div>
+
+        <div class="select-container">
+            <mat-form-field>
+                <mat-label>Izaberite opciju</mat-label>
+                <mat-select [(ngModel)]="selectedOption">
+                    <mat-option *ngFor="let option of optionsFromDatabase" [value]="option" (click)="function()">
+                        {{ option!.naziv }}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+    </div>
+    <div class="tab-container">
+        <mat-tab-group>
+            <mat-tab style="color:black" label="Zakazivanje">
+                <div class="zakazivanje-container">
+                    <form class="zakazivanje-form" (submit)="kreirajCas()">
+                        <br>
+                        <mat-form-field class="example-full-width">
+                            <input matInput [(ngModel)]="sifraCasa" name="naziv" placeholder="Šifra časa">
+                        </mat-form-field>
+                        <mat-form-field class="example-full-width">
+                            <input matInput type="number" [(ngModel)]="trajanje" name="broj"
+                                placeholder="Trajanje časa">
+                        </mat-form-field>
+                        <button mat-raised-button color="primary" type="submit">Zakaži čas</button>
+                    </form>
+                </div>
+            </mat-tab>
+            <mat-tab label="Prisustvo">
+                <div class="prisustva-container">
+                    <table mat-table [dataSource]="tabelaData" class="mat-elevation-z8">
+
+                        <ng-container matColumnDef="indeks">
+                            <th mat-header-cell *matHeaderCellDef> Indeks </th>
+                            <td mat-cell *matCellDef="let element"> {{element.prisustvovao.indeks}} </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="ime">
+                            <th mat-header-cell *matHeaderCellDef> Ime </th>
+                            <td mat-cell *matCellDef="let element"> {{element.prisustvovao.ime}} </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="prezime">
+                            <th mat-header-cell *matHeaderCellDef> Prezime </th>
+                            <td mat-cell *matCellDef="let element"> {{element.prisustvovao.prezime}} </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="prisustvovao/la">
+                            <th mat-header-cell *matHeaderCellDef> Prisustvovao/la na</th>
+                            <td mat-cell *matCellDef="let element"> {{element.broj_odslusanih_casova}}% </td>
+                        </ng-container>
+
+                        <tr mat-header-row *matHeaderRowDef="kolone"></tr>
+                        <tr mat-row *matRowDef="let row; columns: kolone;"></tr>
+                    </table>
+                </div>
+            </mat-tab>
+            <mat-tab label="Statistika">
+                <div class="statistika-container">
+                    <app-chart *ngIf="tmp>0" [idPredmeta]="tmp" [brojStudenata]="brojStudenataPoPredmetu"></app-chart>
+                </div>
+
+            </mat-tab>
+        </mat-tab-group>
+
+    </div>
+</div> -->

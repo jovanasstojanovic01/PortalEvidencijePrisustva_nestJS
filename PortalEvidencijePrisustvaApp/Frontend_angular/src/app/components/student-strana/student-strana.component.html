@@ -1,0 +1,168 @@
+<div class="studentPageContainer">
+    <div class="navbarContainer">
+        <img src="../../../assets/logo.png" class="logoImage" alt="PEP">
+        <!-- <img src="../../../assets/name.png" class="nameImage" alt="PEP"> -->
+        <button class="logOutButton" (click)="logout()">
+            Log Out
+        </button>
+    </div>
+
+    <div class="studentProfileContainer">
+        <div class="studentInfoContainer">
+            <div class="infoContainer">
+                <img src="../../../assets/studentInfoImage.png" class="studentInfoImage" alt="">
+                <br>
+                <div class="infoDataContainer">
+
+                <label class="studentInfoLabel">
+                    Ime: <span class="studentInfo">{{currentUser?.ime}}</span>
+                </label>
+                <label class="studentInfoLabel">
+                    Prezime: <span class="studentInfo">{{currentUser?.prezime}}</span>
+                </label>
+                <label class="studentInfoLabel">
+                    E-Mail: <span class="studentInfo">{{currentUser?.email}}</span>
+                </label>
+                </div>
+            </div>
+            <form class="classContainer" (ngSubmit)="submitForm()">
+                <label class="inputLabel">Prijava prisustva</label>
+                <input class="classInput" type="text" placeholder="Unesite šifru časa" [(ngModel)]="unos">
+                <button class="formButton" type="submit">Potvrdi</button>
+            </form>
+        </div>
+        <div class="subjectsContainer">
+            <table class="subjectsTable">
+                <thead >
+                    <tr>
+                        <th class="subjcetsTableHead">PREDMET</th>
+                        <th class="subjcetsTableHead">PRISUSTVO</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr  *ngFor="let element of tabelaData.data">
+                        <td class="subjectTableData">{{ element.naziv }}</td>
+                        <td class="subjectTableData">{{ element.broj_odslusanih_casova }}%</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- <div class="podaci-container">
+        <div class="user-card">
+            <div class="user-avatar">
+               
+                <h2>Student</h2>
+            </div>
+        </div>
+        <div class="user-info">
+            <p>{{ currentUser?.ime }} {{ currentUser?.prezime }}</p>
+        </div>
+        <div class="user-actions">
+            <button class="mat-button primary-button" (click)="logout()">
+                <i class="material-icons">exit_to_app</i>
+            </button>
+        </div>
+    </div>
+
+    <div class="tab-container">
+       
+
+        <div id="tab1" class="tab-content">
+            <form class="forma" (ngSubmit)="submitForm()">
+                <h3>Prijava prisustva</h3>
+                <input type="text" placeholder="Unesite šifru časa" [(ngModel)]="unos">
+                <button class="mat-button primary-button" type="submit">Potvrdi</button>
+            </form>
+        </div>
+
+        <div id="tab2" class="tab-content">
+            <table class="mat-table">
+                <thead>
+                    <tr>
+                        <th>Predmet</th>
+                        <th>Prisustvo</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let element of tabelaData.data">
+                        <td>{{ element.naziv }}</td>
+                        <td>{{ element.broj_odslusanih_casova }}%</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div> -->
+</div>
+
+
+
+
+
+
+
+<!-- 
+
+<div class="container">
+    <div class="podaci-container">
+        <mat-card class="user-card">
+            <mat-card-header>
+                <div mat-card-avatar class="user-avatar">
+                    <mat-icon>person</mat-icon>
+                    <mat-card-title>Student</mat-card-title>
+                </div>
+
+            </mat-card-header>
+            <mat-card-content>
+                <p>{{ currentUser?.ime }} {{ currentUser?.prezime }}</p>
+            </mat-card-content>
+            <mat-card-actions>
+                <button mat-button color="primary" (click)="logout()"><mat-icon>exit_to_app</mat-icon></button>
+            </mat-card-actions>
+        </mat-card>
+
+    </div>
+
+
+
+
+    <div class="tab-container">
+        <mat-tab-group>
+            <mat-tab style="color:black" label="Prijava casa">
+                <div class="forma-container">
+                    <form class="forma" (ngSubmit)="submitForm()">
+                        <label class="naslov">Prijava prisustva</label>
+                        <mat-form-field>
+                            <input matInput [ngModelOptions]="{standalone: true}" placeholder="Unesite šifru časa"
+                                [(ngModel)]="unos">
+                        </mat-form-field>
+                        <button mat-raised-button color="primary" type="submit">Potvrdi</button>
+                    </form>
+
+                </div>
+            </mat-tab>
+            <mat-tab label="Predmeti">
+                <div>
+                    <table mat-table [dataSource]="tabelaData" class="mat-elevation-z8">
+
+                        <ng-container matColumnDef="predmet">
+                            <th mat-header-cell *matHeaderCellDef> Predmet </th>
+                            <td mat-cell *matCellDef="let element"> {{element.naziv}} </td>
+                        </ng-container>
+
+
+                        <ng-container matColumnDef="prisustvo">
+                            <th mat-header-cell *matHeaderCellDef> Prisustvo </th>
+                            <td mat-cell *matCellDef="let element"> {{element.broj_odslusanih_casova}}% </td>
+                        </ng-container>
+
+                        <tr mat-header-row *matHeaderRowDef="kolone"></tr>
+                        <tr mat-row *matRowDef="let row; columns: kolone;"></tr>
+                    </table>
+                </div>
+            </mat-tab>
+        </mat-tab-group>
+
+    </div>
+</div> -->

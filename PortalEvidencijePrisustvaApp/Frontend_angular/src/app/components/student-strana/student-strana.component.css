@@ -1,0 +1,200 @@
+.studentPageContainer{
+    height: 95vh;
+    width: 98vw;
+}
+
+.navbarContainer {
+    margin: 2%;
+    display: flex;
+    flex-direction: row;
+}
+
+.logoImage {
+    width: 40px;
+    height: 40px;
+}
+
+.nameImage {
+    height: 40px;
+}
+
+.studentProfileContainer{
+    display: flex;
+    flex-direction: column;
+    margin: 20px;
+    margin-left: 250px;
+    margin-right: 250px;
+   
+    border: 2px solid black;
+    
+    box-shadow: 0px 0px 20px black;
+
+    height: 350px;
+}
+
+.subjectsTable{
+    width: 100%;
+}
+
+.studentInfoImage{
+    height: 40px;
+    margin-bottom: 5px;
+}
+.studentInfoContainer{
+    display: flex;
+    flex-direction: row;
+    height: 200px;
+
+}
+.infoContainer{
+    width: 60%;
+    height: 100%;
+    padding-left: 3%;
+    padding-top: 3%;
+}
+.infoDataContainer{
+    display: flex;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 15px;
+    color:#755628;
+    flex-direction: column;
+    justify-content: center;
+    height: 90px;
+    
+}
+.studentInfoLabel{
+    padding-left: 3%;
+    margin-bottom: 6px;
+}
+.studentInfo{
+ 
+    color:rgb(248, 240, 224);
+}
+
+.classContainer{
+    width: 30%;
+    height: 100%;
+    /* background-color: #755628; */
+    background-image: url('../../../assets/backgroundStudentPage.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-left: 5%;
+    padding-right: 5%;
+}
+.inputLabel{
+    font-family: 'Times New Roman', Times, serif;
+    text-shadow: 0px 0px 15px #ffdfba;
+    margin-bottom: 20px;
+    font-weight:bold;
+    text-align: end;
+    font-size: 25px;
+    color:#151414;
+}
+
+.classInput{
+    margin-left: 50px;
+    margin-right: 50px;
+    margin-bottom: 10px;
+}
+
+.formButton {
+    margin-top: 10px;
+    margin-left: 5px;
+    margin-right: 5px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    border: 1.5px solid #ff8e592d;
+    border-radius: 3px;
+    background-color: #323131;
+    color: #ff8e5986;
+    cursor: pointer;
+    transition: 0.5s;
+}
+
+.formButton:hover {
+    border: 1.5px solid #151414;
+    color: #ffdfba
+}
+.logOutButton{
+    margin-left: 10px;
+    background-color: #151414;
+    border: 0px solid #151414;
+    border-radius: 3px;
+    color: #755628;
+    cursor: pointer;
+    transition: 0.8s;
+}
+.logOutButton:hover{
+    background-color: #323131;
+    color: #ffdfba;
+}
+
+.subjectsContainer{
+    height: 150px;
+    background-color: #323131;
+    padding-top: 10px;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+.subjcetsTableHead{
+    background-color: #15141498;
+    color:#88704a;
+    padding: 5px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+.subjectTableData{
+    padding: 5px;
+    font-size: 13px;
+    color:wheat;
+    font-family:serif;
+    border-bottom: 1px solid #151414;
+}
+
+/* .podaci-container {
+    /* display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; */
+/*  width: 20%;
+    Visina ekrana 
+} */
+/* .container{
+    display: flex;
+    flex-direction: row;
+    margin: 1vw;
+}
+
+.forma-container{
+    margin-top: 10%;
+    margin-left: 20%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.forma{
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+}
+
+.naslov{
+    font-size: 28px;
+    margin-bottom: 20%;
+}
+
+.tab-container {
+    margin-left: 2vw;
+    margin-top: 2%;
+    height: 93vh;
+    width: 95%;
+    color: black;
+    background-color: #c2185c2a;
+    border-radius: 5px;
+} */

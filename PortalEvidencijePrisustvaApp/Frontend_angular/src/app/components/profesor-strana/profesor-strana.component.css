@@ -1,0 +1,275 @@
+.profesorPageContainer{
+    height: 95vh;
+    width: 98vw;
+}
+
+/* .container {
+    display: flex;
+    flex-direction: row;
+    margin: 1vw;
+} */
+
+.statiscticInfoContainer{
+    display: flex;
+    flex-direction: row;
+}
+
+.decorativeStudentInfoContainer{
+    background-image: url('../../../assets/profesorPageDecorativeImage.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    width: 33vw;
+    height: 180px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 5px;
+    padding-right: 5px;
+    box-shadow: 5px -5px 20px black;
+}
+
+.studentInfoTable{
+    width: 100%;
+}
+
+.studentTableHead{
+    background-color: #88704a81;
+    color: #000000;
+    padding: 1px;
+    padding-left: 2px;
+    padding-right: 2px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-weight: 100;
+}
+
+.studentTableData{
+    padding: 2px;
+    background-color: #15141494;
+    font-size: 13px;
+    color: wheat;
+    font-family: serif;
+    border-bottom: 1px solid #151414;
+}
+
+.graphContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-left: 15px;
+}
+
+.navbarContainer {
+    margin: 2%;
+    margin-bottom: 5px;
+    display: flex;
+    flex-direction: row;
+}
+
+.logoImage {
+    width: 40px;
+    height: 40px;
+}
+.logOutButton {
+    margin-left: 10px;
+    background-color: #151414;
+    border: 0px solid #151414;
+    border-radius: 3px;
+    color: #755628;
+    cursor: pointer;
+    transition: 0.8s;
+}
+
+.logOutButton:hover {
+    background-color: #323131;
+    color: #ffdfba;
+}
+
+.profesorProfileContainer {
+    display: flex;
+    flex-direction: column;
+    margin: 20px;
+    margin-top: 5px;
+    margin-left: 200px;
+    margin-right: 200px;
+    border: 2px solid black;
+    box-shadow: 0px 0px 20px black;
+
+    height: 380px;
+}
+.profesorInfoContainer{
+    display: flex;
+    flex-direction: row;
+    height: 180px;
+}
+
+.infoContainer{
+    width: 60%;
+    height: 100%;
+    padding-left: 3%;
+    padding-top: 3%;
+}
+
+.profesorInfoImage{
+    height: 40px;
+    margin-bottom: 5px;
+}
+
+.profesorInfoLabel{
+    padding-left: 3%;
+        margin-bottom: 6px;
+}
+
+.profesorInfo{
+    color: rgb(248, 240, 224);
+}
+
+.infoDataContainer{
+    display: flex;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 15px;
+    color: #755628;
+    flex-direction: column;
+    justify-content: center;
+    height: 90px;
+}
+
+.selectSubjectContainer{
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 19px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+    width: 25vw;
+}
+
+.classContainer{
+    height: 150px;
+    display: flex;
+    width: 28vw;
+    background-color: #323131;
+    
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 16px;
+}
+.classLabel{
+    font-family: 'Times New Roman', Times, serif;
+    margin-top: 5px;
+    font-weight: 500;
+    margin-bottom: 3px;
+    color: #ffdfba;
+}
+.option{
+    font-size: 18px;
+}
+
+.formButton {
+    margin-top: 5px;
+    margin-left: 5px;
+    margin-right: 5px;
+    margin-bottom: 5px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    border: 1.5px solid #ff8e592d;
+    border-radius: 3px;
+    background-color: #151414;
+    color: #ff8e5986;
+    cursor: pointer;
+    transition: 0.5s;
+}
+
+
+.formButton:hover {
+    border: 1.5px solid #151414;
+    color: #ffdfba
+}
+
+.subjectAndClassContainer{
+    /* width: 30%; */
+    height: 100%;
+    background-color: #755628;
+    /* background-image: url('../../../assets/backgroundStudentPage.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    
+}
+
+/* .pick-container{
+    width: 20%;
+    display: flex;
+    flex-direction: column;
+
+}
+
+.container{
+    display: flex;
+    margin: 1vw;
+    margin-bottom: 0;
+}
+
+.card-container {
+    /* display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; */
+    /* height: 100vh; */
+
+    /* Visina ekrana
+    margin-bottom: 2%;
+}
+
+.prisustva-container{
+    background-color: white;
+    height: 90vh;
+}
+
+.slect-container{
+    width: 20%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.tab-container{
+    margin-left: 2vw;
+    height: 93vh;
+    width: 80%;
+    color:black;
+    background-color: #c2185c2a;
+    border-radius: 5px;
+}
+
+.zakazivanje-container{
+
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 90vh;
+
+}
+
+
+.statistika-container{
+    background-color: white;
+        flex-direction: column;
+        align-items: center;
+        height: 87vh;
+
+}
+.zakazivanje-form{
+    display: flex;
+    margin-top: 5%;
+    flex-direction: column;
+    /* background-color: #c2185c50; */
+ /*   padding: 5%;
+    padding-bottom: 7%;
+    border-radius: 5px;
+} */

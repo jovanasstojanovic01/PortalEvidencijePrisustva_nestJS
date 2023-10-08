@@ -1,0 +1,55 @@
+<div class="homePageContainer">
+    <div class="navbarContainer">
+        <img src="../../../assets/logo.png" class="logoImage" alt="PEP">
+        <img src="../../../assets/name.png" class="nameImage" alt="PEP">
+    </div>
+    <div class="decorativeContainer">
+        <img src="../../../assets/decoration.png" class="decorationImage" alt="PEP">
+    </div>
+    <div class="loginContainer">
+        <div class="loginForm">
+            <label class="inputLabel" for="email">Email</label>
+            <input type="text" id="email" [(ngModel)]="email" placeholder="Email">
+            
+            <label  class="inputLabel" for="password">Password</label>
+            <input type="password" id="password" [(ngModel)]="password" placeholder="Password">
+
+        </div>
+        <div class="loginPickForm">
+            <label  class="inputLabel">
+                <input type="radio" [(ngModel)]="userType" value="student" name="userType">
+                Student
+            </label>
+            <label  class="inputLabel">
+                <input type="radio" [(ngModel)]="userType" value="profesor" name="userType">
+                Profesor
+            </label>
+            <button class="formButton" (click)="submit()">Prijavi se</button>
+        </div>
+    </div>
+    
+</div>
+
+
+<!-- 
+
+<div class="login-container">
+    <mat-form-field>
+        <input matInput placeholder="Email" [(ngModel)]="email">
+    </mat-form-field>
+    <mat-form-field>
+        <input matInput type="password" placeholder="Password" [(ngModel)]="password">
+    </mat-form-field>
+    <div class="user-type">
+        <label>
+            <input type="radio" [(ngModel)]="userType" value="student">
+            Student
+        </label>
+        <label>
+            <input type="radio" [(ngModel)]="userType" value="profesor">
+            Profesor
+        </label>
+    </div>
+    <br>
+    <button mat-raised-button color="primary" (click)="submit()">Submit</button>
+</div> -->

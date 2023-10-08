@@ -1,0 +1,106 @@
+.homePageContainer{
+    height: 95vh;
+    width: 98vw;
+}
+
+.navbarContainer{
+    margin: 2%;
+    display: flex;
+    flex-direction: row;
+}
+
+.logoImage{
+    width: 40px;
+    height: 40px;
+}
+
+.nameImage{
+    height: 40px;
+}
+
+.decorationImage{
+    height: 150px;
+}
+
+.decorativeContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin:20px;
+    margin-left: 250px;
+    margin-right: 250px;
+    padding: 15px;
+    border: 2px solid #755628;
+    box-shadow: 0px 0px 20px black;
+}
+
+.loginContainer{
+    margin: 20px;
+    height: 150px;
+    margin-bottom: 0px;
+    margin-left: 250px;
+    margin-right: 250px;
+    background-color: #323131;
+    box-shadow: 0px 0px 20px black;
+    display: flex;
+    flex-direction: row;
+
+}
+
+.loginForm{
+    font-family: "Times New Roman",
+        Times,
+        serif;
+    color:#ffdfba;
+    width: 50%;
+    height: 100%;
+    background-color: #755628;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-left: 8%;
+    padding-right: 8%;
+}
+.inputLabel{
+    margin-top: 5px;
+}
+
+.loginPickForm{
+    font-family: "Times New Roman",
+            Times,
+            serif;
+    width: 25%;
+    color: #ffdfba;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-left: 8%;
+    padding-right: 8%;
+}
+input[type="radio"]{
+    cursor: pointer;
+}
+
+input[type="radio"]:checked {
+    accent-color: #ff8d59 !important;
+}
+
+.formButton{
+    margin-top: 10px;
+    margin-left: 5px;
+    margin-right: 5px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    border: 1.5px solid #151414;
+    border-radius: 3px;
+    background-color: #151414;
+    color:#ff8e599a;
+    cursor:pointer;
+    transition: 0.5s;
+}
+
+.formButton:hover{
+    border: 1.5px solid #ff8e592d;
+    color:#ffdfba
+}
